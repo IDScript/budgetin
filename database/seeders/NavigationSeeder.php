@@ -16,19 +16,36 @@ class NavigationSeeder extends Seeder
         Navigation::create([
             'nav' => "Home",
             'icon' => 'home',
+            'link' => 'home',
             'priority' => '0',
+            'user_id' => 1
+        ]);
+        Navigation::create([
+            'nav' => "Wallet",
+            'icon' => 'account_balance_wallet',
+            'link' => 'wallet',
+            'priority' => '1',
+            'user_id' => 1
+        ]);
+        Navigation::create([
+            'nav' => "Report",
+            'icon' => 'home_storage',
+            'link' => 'report',
+            'priority' => '2',
             'user_id' => 1
         ]);
         Navigation::create([
             'nav' => "Setting",
             'icon' => 'settings',
-            'priority' => '2',
+            'link' => 'settings',
+            'priority' => '3',
             'user_id' => 1
         ]);
         Navigation::create([
             'nav' => "Account",
             'icon' => 'person',
-            'priority' => '5',
+            'link' => 'person',
+            'priority' => '4',
             'user_id' => 1
         ]);
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string("nav");
+            $table->string("link");
             $table->string('icon')->default('error');
             $table->enum('priority', [0, 1, 2, 3, 4, 5])->default(0);
             $table->timestamps();

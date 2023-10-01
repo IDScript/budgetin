@@ -30,8 +30,6 @@
         <main>
             {{ $slot }}
         </main>
-        {{ $nav }}
-        {{-- @include('layouts.navb', ['nav'=>$nav]) --}}
     </div>
 </body>
 

@@ -14,4 +14,5 @@
 			</div>
 		</div>
 	</div>
+	@include('layouts.navb', ['navs'=>$nav])
 </x-app-layout>
