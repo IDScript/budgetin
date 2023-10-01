@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Navigation;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +12,10 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('home');
+        $nav = Navigation::where('user_id', 1)->orderBy('priority', 'asc')->get();
+
+        return view('home', [
+            'nav' => $nav
+        ]);
     }
 }
