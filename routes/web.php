@@ -14,9 +14,8 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', HomeController::class);
-Route::get('/home', \App\Livewire\Home\Home::class)->name('home');
-Route::get('/about', \App\Livewire\Home\About::class)->name('about');
+Route::view('/', 'welcome');
+// Route::get('/', HomeController::class)->middleware(['auth'])->name('home');
 
 
 Route::view('dashboard', 'dashboard')
