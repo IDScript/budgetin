@@ -7,27 +7,8 @@ on:
     branches: ["main", "dev", "qa"]
 
 jobs:
-  Build_Assets:
-    runs-on: ubuntu-latest
-    name: Build Assets with Node 18.x LTS
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.4.0
-        with:
-          version: latest
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.7.0
-        with:
-          node-version: 18
-          cache: "pnpm"
-      - name: Install Depedency
-        run: pnpm i
-      - name: Build Assets
-        run: pnpm build
   Laravel_Test:
     runs-on: ubuntu-latest
-    needs: Build_Assets
     container:
       image: kirschbaumdevelopment/laravel-test-runner:8.2
 
@@ -43,6 +24,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          version: latest
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.7.0
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Depedency
+        run: pnpm i
+      - name: Build Assets
+        run: pnpm build
       - name: Install composer dependencies
         run: |
           composer install --no-scripts
