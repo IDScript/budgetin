@@ -37,6 +37,8 @@ jobs:
         run: pnpm i
       - name: Build Assets
         run: pnpm build
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
       - name: Install composer dependencies
         run: |
           composer install --no-scripts
