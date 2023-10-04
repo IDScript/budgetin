@@ -29,6 +29,6 @@ jobs:
           mysql root password: root
           mysql database: "budgetin"
       - name: Laravel Migrate
-        run: php artisan migrate:fresh --seed
+        run: php artisan migrate
       - name: Laravel Run Test
         run: php artisan test
