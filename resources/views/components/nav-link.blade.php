@@ -2,7 +2,7 @@
 
 @php
 
-$active = $data == request()->path();
+$active = str_contains($data, request()->path());
 
 $classes = ($active ?? false)
 ? 'block w-full p-2 text-center text-sky-400 hover:bg-gray-200'
