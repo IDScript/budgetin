@@ -71,7 +71,7 @@ new class extends Component {
     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
       {{ __("Profile Information") }}
     </h2>
-
+    
     <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
       {{ __("Update your account's profile information and email address.") }}
     </p>
@@ -79,17 +79,15 @@ new class extends Component {
 
   <form class="mt-6 space-y-6" wire:submit="updateProfileInformation">
     <div>
-      <x-input-label for="name" :value="__("Name")" />
       <x-text-input class="mt-1 block w-full" id="name" name="name" type="text" wire:model="name" required
         autofocus autocomplete="name" />
-      <x-input-error class="mt-2" :messages="$errors->get("name")" />
+      <x-input-error class="mt-2" :messages="$errors->get('name')" />
     </div>
 
     <div>
-      <x-input-label for="email" :value="__("Email")" />
-      <x-text-input class="mt-1 block w-full" id="email" name="email" type="email" wire:model="email" required
+      <x-text-input class="mt-1 block w-full" id="email" :placeholder="__('Email')" name="email" type="email" wire:model="email" required
         autocomplete="username" />
-      <x-input-error class="mt-2" :messages="$errors->get("email")" />
+      <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
       @if (auth()->user() instanceof MustVerifyEmail &&
               !auth()->user()->hasVerifiedEmail())
@@ -112,19 +110,21 @@ new class extends Component {
         </div>
       @endif
     </div>
-
-    <div class="flex items-center gap-4">
-      <x-primary-button>{{ __("Save") }}</x-primary-button>
-
-      <x-action-message class="mr-3" on="profile-updated">
+    
+    <div class="flex items-center gap-4 justify-between">
+      <button
+      class="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
+        type="submit">
+        {{ __("Update Profile") }}
+      </button>
+      <x-action-message on="profile-updated">
         {{ __("Saved.") }}
       </x-action-message>
+      <button 
+        class="inline-flex items-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
+        wire:click="logout">
+        {{ __("Log Out") }}
+      </button>
     </div>
   </form>
-
-  <button
-    class="mt-4 inline-flex items-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
-    wire:click="logout">
-    {{ __("Log Out") }}
-  </button>
 </section>
