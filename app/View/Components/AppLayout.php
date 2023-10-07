@@ -3,15 +3,17 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\Navigation;
 use Illuminate\View\View;
 
 class AppLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     */
     public function render(): View
     {
-        return view('layouts.app');
+        $id = auth()->user()->id;
+        $navs = Navigation::where('user_id', $id)->orderBy('priority', 'asc')->get();
+        return view('layouts.app', [
+            'navs' => $navs
+        ]);
     }
 }

@@ -44,7 +44,7 @@ class NavigationSeeder extends Seeder
         Navigation::create([
             'nav' => "Account",
             'icon' => 'person',
-            'link' => 'person',
+            'link' => 'profile',
             'priority' => '4',
             'user_id' => 1
         ]);
