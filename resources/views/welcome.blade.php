@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{-- App icon --}}
+  <link rel="shortcut icon" href="https://github.com/KAnggara75.png" type="image/x-icon">
   <title>Laravel x Tailwind CSS</title>
   @vite("resources/css/app.css")
 </head>
