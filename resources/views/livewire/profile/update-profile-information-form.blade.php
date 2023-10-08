@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new class extends Component {
     public string $name = "";
@@ -112,19 +112,17 @@ new class extends Component {
     </div>
     
     <div class="flex items-center gap-4 justify-between">
-      <button
-      class="inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:bg-gray-200 dark:text-gray-800 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
-        type="submit">
+      <x-primary-button>
         {{ __("Update Profile") }}
-      </button>
+      </x-primary-button>
       <x-action-message on="profile-updated">
         {{ __("Saved.") }}
       </x-action-message>
-      <button 
-        class="inline-flex items-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
-        wire:click="logout">
-        {{ __("Log Out") }}
-      </button>
     </div>
   </form>
+  <button 
+    class="mt-4 inline-flex items-center rounded-md border border-transparent bg-amber-500 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-900 transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:hover:bg-white dark:focus:bg-white dark:focus:ring-offset-gray-800 dark:active:bg-gray-300"
+    wire:click="logout">
+    {{ __("Log Out") }}
+  </button>
 </section>
