@@ -1,13 +1,13 @@
 <?php
 
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\RateLimiter;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
+use Illuminate\Support\Str;
 
 new #[Layout('layouts.guest')] class extends Component
 {
