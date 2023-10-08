@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="refresh" content="3;url=/" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield("title") | {{ config("app.name", "BudgetIn") }}</title>
   <link type="image/x-icon" href="https://github.com/KAnggara75.png" rel="shortcut icon">
