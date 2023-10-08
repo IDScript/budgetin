@@ -13,16 +13,12 @@ return new class extends Migration
     {
         Schema::create('navigations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            $table->enum('user_role', ['member','admin','super']);
             $table->string("nav");
             $table->string("link");
             $table->string('icon')->default('error');
             $table->enum('priority', [0, 1, 2, 3, 4, 5])->default(0);
             $table->timestamps();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onCascade('delete');
         });
     }
 
