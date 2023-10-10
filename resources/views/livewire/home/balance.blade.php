@@ -2,6 +2,7 @@
 
 use function Livewire\Volt\{state};
 use Livewire\Volt\Component;
+use App\Models\UserSetting;
 use App\Models\User;
 
 new class extends Component {
@@ -9,13 +10,24 @@ new class extends Component {
     public string $email = "";
     public string $balance = "";
     public string $currancy = "Rp. ";
+    
     public string $visible = "visibility";
+
     public string $balance_hide = "*********";
     public string $notif = "notifications_off";
     public string $balance_show = "123.456.789";
 
+    public $userSetting;
+    public $isVisible;
+    
+    // Navigation::where('user_id', 1)->orderBy('priority', 'asc')->get();
+
     public function mount(): void
     {
+        $this->userSetting = UserSetting::where('user_id', 1)->first();
+        $this->isVisible = $this->userSetting->hide_notif;
+
+
         $this->balance = $this->currancy . $this->balance_show;
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
@@ -49,7 +61,7 @@ new class extends Component {
       <button class="material-symbols-sharp mr-2" wire:click='hide_balance'>
         {{ $visible }}
       </button>
-      <p>{{ $balance }}</p>
+      <p>{{ $isVisible }}</p>
     </h2>
     <div class="material-symbols-sharp flex justify-end">
       <button class="" wire:click='notif_switch'>
