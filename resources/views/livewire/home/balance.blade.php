@@ -6,31 +6,28 @@ use App\Models\UserSetting;
 use App\Models\User;
 
 new class extends Component {
-    public string $name = "";
-    public string $email = "";
+    public $userSetting;
+    public $isHideBalance = false;
+
     public string $balance = "";
     public string $currancy = "Rp. ";
-    
+
     public string $visible = "visibility";
 
     public string $balance_hide = "*********";
     public string $notif = "notifications_off";
     public string $balance_show = "123.456.789";
 
-    public $userSetting;
-    public $isVisible;
-    
-    // Navigation::where('user_id', 1)->orderBy('priority', 'asc')->get();
-
     public function mount(): void
     {
-        $this->userSetting = UserSetting::where('user_id', 1)->first();
-        $this->isVisible = $this->userSetting->hide_notif;
+        $this->userSetting = UserSetting::where("user_id", auth()->user()->id)->first();
 
+        if (isset($this->userSetting)) {
+            $this->isHideBalance = $this->userSetting->hide_balance;
+        }
 
-        $this->balance = $this->currancy . $this->balance_show;
-        $this->name = auth()->user()->name;
-        $this->email = auth()->user()->email;
+        $this->visible = $this->isHideBalance ? "visibility_off" : "visibility";
+        $this->balance = $this->isHideBalance ? $this->balance_hide : $this->currancy . $this->balance_show;
     }
 
     public function notif_switch()
@@ -44,13 +41,19 @@ new class extends Component {
 
     public function hide_balance()
     {
-        if ($this->visible == "visibility") {
-            $this->balance = $this->balance_hide;
-            $this->visible = "visibility_off";
-        } else {
-            $this->balance = $this->currancy . $this->balance_show;
+        if ($this->isHideBalance == 1) {
+            $this->isHideBalance = 0;
             $this->visible = "visibility";
+            $this->balance = $this->currancy . $this->balance_show;
+        } else {
+            $this->isHideBalance = 1;
+            $this->visible = "visibility_off";
+            $this->balance = $this->balance_hide;
         }
+
+        $this->userSetting->hide_balance = $this->isHideBalance;
+        $this->userSetting->save();
+        $this->dispatch("setting-updated");
     }
 };
 ?>
@@ -61,7 +64,7 @@ new class extends Component {
       <button class="material-symbols-sharp mr-2" wire:click='hide_balance'>
         {{ $visible }}
       </button>
-      <p>{{ $isVisible }}</p>
+      <p>{{ $balance }}</p>
     </h2>
     <div class="material-symbols-sharp flex justify-end">
       <button class="" wire:click='notif_switch'>
