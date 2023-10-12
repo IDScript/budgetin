@@ -14,7 +14,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          local-dir: ./api/
+          local-dir: .
           server: ${{ secrets.SOP_HOST }}
           username: ${{ secrets.SOP_SSH_USERNAME }}
           password: ${{ secrets.SOP_SSH_PASSWORD }}
