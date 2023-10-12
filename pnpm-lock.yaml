@@ -367,7 +367,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001547
-      electron-to-chromium: 1.4.548
+      electron-to-chromium: 1.4.551
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
     dev: true
@@ -431,8 +431,8 @@ packages:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: true
 
-  /electron-to-chromium@1.4.548:
-    resolution: {integrity: sha512-R77KD6mXv37DOyKLN/eW1rGS61N6yHOfapNSX9w+y9DdPG83l9Gkuv7qkCFZ4Ta4JPhrjgQfYbv4Y3TnM1Hi2Q==}
+  /electron-to-chromium@1.4.551:
+    resolution: {integrity: sha512-/Ng/W/kFv7wdEHYzxdK7Cv0BHEGSkSB3M0Ssl8Ndr1eMiYeas/+Mv4cNaDqamqWx6nd2uQZfPz6g25z25M/sdw==}
     dev: true
 
   /esbuild@0.18.20:
@@ -742,7 +742,7 @@ packages:
       postcss: 8.4.31
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
-      resolve: 1.22.6
+      resolve: 1.22.8
     dev: true
 
   /postcss-js@4.0.1(postcss@8.4.31):
@@ -824,8 +824,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /resolve@1.22.6:
-    resolution: {integrity: sha512-njhxM7mV12JfufShqGy3Rz8j11RPdLy4xi15UurGJeoHLfJpVXKdh3ueuOqbYUcDZnffr6X739JBo5LzyahEsw==}
+  /resolve@1.22.8:
+    resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
     hasBin: true
     dependencies:
       is-core-module: 2.13.0
@@ -901,7 +901,7 @@ packages:
       postcss-load-config: 4.0.1(postcss@8.4.31)
       postcss-nested: 6.0.1(postcss@8.4.31)
       postcss-selector-parser: 6.0.13
-      resolve: 1.22.6
+      resolve: 1.22.8
       sucrase: 3.34.0
     transitivePeerDependencies:
       - ts-node
