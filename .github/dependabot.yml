@@ -9,15 +9,18 @@ updates:
   - package-ecosystem: "github-actions"
     # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
     directory: "/"
+    target-branch: "qa"
     schedule:
       interval: "weekly"
   # Maintain dependencies for npm
   - package-ecosystem: "npm"
+    target-branch: "qa"
     directory: "/"
     schedule:
       interval: "weekly"
   # Maintain dependencies for Composer
   - package-ecosystem: "composer"
+    target-branch: "qa"
     directory: "/"
     schedule:
       interval: "weekly"
