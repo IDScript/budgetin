@@ -14,10 +14,10 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          local-dir: .
-          server: ${{ secrets.SOP_HOST }}
-          username: ${{ secrets.SOP_SSH_USERNAME }}
-          password: ${{ secrets.SOP_SSH_PASSWORD }}
+          local-dir: ./
+          server: ${{ secrets.KA_FTP_HOST }}
+          username: ${{ secrets.KA_FTP_USERNAME }}
+          password: ${{ secrets.KA_FTP_PASSWORD }}
           server-dir: kanggara/
       - name: 📦 Composer install
         uses: appleboy/ssh-action@master
