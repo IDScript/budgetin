@@ -13,7 +13,7 @@ class Navigation extends Model
         'nav', 'icon', 'priority'
     ];
 
-    public function article()
+    public function navigations()
     {
         return $this->belongsTo(User::class);
     }

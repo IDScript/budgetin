@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new #[Layout('layouts.guest')] class extends Component
 {
