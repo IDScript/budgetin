@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
+      - run: git checkout dev
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
         with:

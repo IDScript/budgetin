@@ -63,7 +63,7 @@ new class extends Component {
 
     public function dehydrate()
     {
-        $this->userSetting->save();
+        // $this->userSetting->save();
     }
 };
 ?>
