@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('user_settings', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
             $table->boolean('hide_balance');
             $table->boolean('hide_notif');
-            $table->timestamps();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onCascade('delete');
+                  ->references('id')
+            			->on('users')
+            			->onCascade('delete');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

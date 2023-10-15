@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('icon')->default('error');
             $table->enum('priority', [0, 1, 2, 3, 4, 5])->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
