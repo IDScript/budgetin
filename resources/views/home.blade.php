@@ -1,13 +1,17 @@
-<x-app-layout>
+<x-app-layout title="Home">
   <x-slot name="header">
-    <livewire:home.balance>
+    <livewire:home.balance />
   </x-slot>
-  <div class="py-12">
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-        <div class="p-6 text-gray-900 dark:text-gray-100">
-          {{ __("You're in Home Page") }}
-        </div>
+  <div class="p-6 pb-24 sm:pt-12">
+    <div class="mx-auto max-w-3xl space-y-6 sm:px-6 lg:px-8">
+      <div class="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-8">
+        <livewire:home.wallet />
+      </div>
+      <div class="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-8">
+        <livewire:home.report />
+      </div>
+      <div class="rounded-lg bg-white p-4 shadow dark:bg-gray-800 sm:p-8">
+        <livewire:home.summary />
       </div>
     </div>
   </div>

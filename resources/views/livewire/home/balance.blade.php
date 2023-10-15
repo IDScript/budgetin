@@ -25,7 +25,7 @@ new class extends Component {
             $this->hideNotif = $this->userSetting->hide_notif;
             $this->isHideBalance = $this->userSetting->hide_balance;
 
-            if ($this->hideNotif) {
+            if ($this->hideNotif == 1) {
                 $this->notif = "notifications_off";
             } else {
                 $this->notif = "notifications_active";
@@ -38,12 +38,14 @@ new class extends Component {
 
     public function notif_switch()
     {
-        if ($this->hideNotif) {
+        if ($this->hideNotif == 1) {
+            $this->hideNotif = 0;
             $this->notif = "notifications_active";
         } else {
+            $this->hideNotif = 1;
             $this->notif = "notifications_off";
         }
-        $this->hideNotif = !$this->hideNotif;
+        $this->userSetting->hide_notif = $this->hideNotif;
     }
 
     public function hide_balance()
@@ -57,13 +59,12 @@ new class extends Component {
             $this->visible = "visibility_off";
             $this->balance = $this->balance_hide;
         }
-
         $this->userSetting->hide_balance = $this->isHideBalance;
     }
 
-    public function dehydrate()
+    public function updated()
     {
-        // $this->userSetting->save();
+        $this->userSetting->save();
     }
 };
 ?>

@@ -8,8 +8,8 @@
 
   <title>{{ $title ?? "BudgetIn" }} | {{ config("app.name", "BudgetIn") }}</title>
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   {{-- App Icon --}}
   <link type="image/x-icon" href="https://github.com/KAnggara75.png" rel="shortcut icon">
