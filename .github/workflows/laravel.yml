@@ -34,13 +34,14 @@ jobs:
           node-version: 18
           cache: "pnpm"
       - name: Install Depedency
-        run: pnpm i
+        run: cd web && pnpm i
       - name: Build Assets
-        run: pnpm build
+        run: cd web && pnpm build
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
       - name: Install composer dependencies
         run: |
+          cd web
           composer install --no-scripts
       - name: Prepare Laravel Application
         run: |
