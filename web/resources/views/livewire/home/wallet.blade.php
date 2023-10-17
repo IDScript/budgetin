@@ -41,7 +41,7 @@ new class extends Component {
       </div>
     </div>
     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <a class="text-sm leading-6" href="#">Lihat Semua</a>
+      <a class="text-sm leading-6" wire:navigate href="wallet">Lihat Semua</a>
     </div>
   </li>
   @foreach ($userWallet as $wallet)
