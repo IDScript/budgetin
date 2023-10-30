@@ -1,4 +1,4 @@
-# budgetin
+# BudgetIn
 
 A new Flutter project.
 
