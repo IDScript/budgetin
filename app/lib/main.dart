@@ -1,33 +1,25 @@
-import 'package:flutter/foundation.dart';
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => Counter()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
-class Counter with ChangeNotifier, DiagnosticableTreeMixin {
-  int _count = 0;
+class CounterCubit extends Cubit<int> {
+  CounterCubit({this.initData = 0}) : super(0);
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(IntProperty('count', count));
-  }
+	int initData;
 
-  int get count => _count;
+	void add(){
+		emit(state+1);
+		print(state);
+	}
 
-  void increment() {
-    _count++;
-    notifyListeners();
-  }
+	void remove(){
+		emit(state-1);
+		print(state);
+	}
+
 }
 
 class MyApp extends StatelessWidget {
@@ -35,50 +27,56 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+	final CounterCubit myCounter = CounterCubit();
+  MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Example'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('You have pushed the button this many times:'),
-            Count(),
-          ],
+        appBar: AppBar(
+          title: const Text('Example'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        key: const Key('increment_floatingActionButton'),
-        onPressed: () => context.read<Counter>().increment(),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class Count extends StatelessWidget {
-  const Count({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '${context.watch<Counter>().count}',
-      key: const Key('counterState'),
-      style: Theme.of(context).textTheme.headlineMedium,
-    );
+        body: Column(
+					mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            StreamBuilder<int	>(
+							stream: myCounter.stream,
+							initialData: myCounter.initData,
+							builder: (context, snapshot) {
+								return  Center(
+									child: Text(
+										'${snapshot.data}'.toString(),
+										style: const TextStyle(fontSize: 50),
+									),
+								);
+							}
+						),
+						const SizedBox(height: 20),
+						Row(
+							mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+							children: [
+								IconButton(
+									onPressed: (){
+										myCounter.remove();
+									}, 
+									icon: const Icon(Icons.remove)
+								),
+								IconButton(
+									onPressed: (){
+										myCounter.add();
+									}, 
+									icon: const Icon(Icons.add)
+								),
+							],
+						)
+          ],
+        ));
   }
 }
