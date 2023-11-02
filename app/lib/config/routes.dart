@@ -1,7 +1,8 @@
-import 'package:budgetin/ui/home_page.dart';
-import 'package:budgetin/ui/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../ui/home_page.dart';
+import '../ui/main_page.dart';
 
 /// The route configuration.
 class MyRouter {

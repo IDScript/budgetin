@@ -1,7 +1,7 @@
 name: budgetin
 description: Budgeting App
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 0.1.0-alpha0110
+version: 0.1.0-alpha0116
 
 environment:
   sdk: '>=3.1.3 <4.0.0'
@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
-  provider: ^6.0.5
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
