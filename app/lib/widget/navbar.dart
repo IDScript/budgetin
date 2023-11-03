@@ -1,3 +1,5 @@
+import '../ui/home_page.dart';
+import '../ui/main_page.dart';
 import 'package:flutter/material.dart';
 
 List<BottomNavigationBarItem> bottomNavItems = const <BottomNavigationBarItem>[
@@ -23,10 +25,17 @@ List<BottomNavigationBarItem> bottomNavItems = const <BottomNavigationBarItem>[
   ),
 ];
 
-const List<Widget> bottomNavScreen = <Widget>[
-  Text('Index 0: Home'),
-  Text('Index 1: Category'),
-  Text('Index 2: Search'),
-  Text('Index 3: Favourite'),
-  Text('Index 4: Cart'),
+List<Widget> bottomNavScreen = <Widget>[
+  const Text('Index 2: Search'),
+  MainPage(),
+  MyHomePage(),
+  const Text('Index 3: Favourite'),
+  Scaffold(
+    appBar: AppBar(
+      title: const Text('Error'),
+    ),
+    body: const Center(
+      child: Text('ERROR'),
+    ),
+  )
 ];

@@ -1,25 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../ui/home_page.dart';
+import '../bloc/navbar/navbar_bloc.dart';
 import '../ui/main_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// The route configuration.
-class MyRouter {
-  final router = GoRouter(
-    routes: <RouteBase>[
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const MainPage();
-        },
-      ),
-      GoRoute(
-        path: '/home',
-        builder: (BuildContext context, GoRouterState state) {
-          return MyHomePage();
-        },
-      ),
-    ],
-  );
+class RouteGenerator {
+  final NavBarBloc navBarBloc = NavBarBloc();
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<NavBarBloc>.value(
+            value: navBarBloc,
+            child: MainPage(),
+          ),
+        );
+      default:
+        return _errorRoute();
+    }
+  }
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Error'),
+        ),
+        body: const Center(
+          child: Text('ERROR'),
+        ),
+      );
+    });
+  }
 }

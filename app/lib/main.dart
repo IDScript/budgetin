@@ -1,12 +1,14 @@
 import 'dart:io';
-import './config/routes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
+
+import 'config/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(480, 640));
+    setWindowMinSize(const Size(432, 768));
     setWindowMaxSize(Size.infinite);
   }
 
@@ -18,9 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: MyRouter().router,
+      title: 'Flutter BNB using BLoC',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator().generateRoute,
     );
   }
 }
