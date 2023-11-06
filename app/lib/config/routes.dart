@@ -1,18 +1,22 @@
-import '../bloc/navbar/navbar_bloc.dart';
+import '../ui/sub_mene.dart';
 import '../ui/main_page.dart';
 import 'package:flutter/material.dart';
+import '../bloc/navbar/navbar_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouteGenerator {
-  final NavBarBloc navBarBloc = NavBarBloc();
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
           builder: (_) => BlocProvider<NavBarBloc>.value(
-            value: navBarBloc,
-            child: MainPage(),
+            value: NavBarBloc(),
+            child: const MainPage(),
           ),
+        );
+      case '/sub':
+        return MaterialPageRoute(
+          builder: (_) => const SubPage(),
         );
       default:
         return _errorRoute();
