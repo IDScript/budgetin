@@ -1,8 +1,9 @@
-import '../ui/sub_mene.dart';
-import '../ui/main_page.dart';
 import 'package:flutter/material.dart';
-import '../bloc/navbar/navbar_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/navbar/navbar_bloc.dart';
+import '../ui/main_page.dart';
+import '../ui/sub_mene.dart';
 
 class RouteGenerator {
   Route<dynamic> generateRoute(RouteSettings settings) {

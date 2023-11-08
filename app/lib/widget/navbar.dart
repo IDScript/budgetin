@@ -1,6 +1,7 @@
-import '../ui/lima.dart';
-import '../ui/home_page.dart';
 import 'package:flutter/material.dart';
+
+import '../ui/home_page.dart';
+import '../ui/lima.dart';
 
 List<BottomNavigationBarItem> bottomNavItems = const <BottomNavigationBarItem>[
   BottomNavigationBarItem(
@@ -26,9 +27,9 @@ List<BottomNavigationBarItem> bottomNavItems = const <BottomNavigationBarItem>[
 ];
 
 List<Widget> bottomNavScreen = <Widget>[
+  MyHomePage(),
   const Text('Index 1: Home'),
   const Text('Index 2: Search'),
-  MyHomePage(),
   const Text('Index 3: Favourite'),
   const Lima(),
 ];
