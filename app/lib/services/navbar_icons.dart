@@ -1,35 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../ui/home_page.dart';
-import '../ui/lima.dart';
-
 List<BottomNavigationBarItem> bottomNavItems = const <BottomNavigationBarItem>[
   BottomNavigationBarItem(
     icon: Icon(Icons.home),
     label: 'Home',
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.wallet),
-    label: 'Category',
+    icon: Icon(Icons.account_balance_wallet),
+    label: 'Wallet',
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.add),
     label: 'Add',
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.favorite_outline),
-    label: 'Favourite',
+    icon: Icon(Icons.receipt_long),
+    label: 'Transaction',
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.person),
-    label: 'Cart',
+    label: 'Account',
   ),
-];
-
-List<Widget> bottomNavScreen = <Widget>[
-  MyHomePage(),
-  const Text('Index 1: Home'),
-  const Text('Index 2: Search'),
-  const Text('Index 3: Favourite'),
-  const Lima(),
 ];
