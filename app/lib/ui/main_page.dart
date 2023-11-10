@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/navbar/navbar_bloc.dart';
-import '../services/navbar_items.dart';
-import '../services/navbar_icons.dart';
+import '../services/navbar/navbar_items.dart';
+import '../services/navbar/navbar_icons.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print('object');
+    print('Build Main Scaffold');
     return BlocBuilder<NavBarBloc, NavBarState>(
       builder: (context, state) {
         return Scaffold(
