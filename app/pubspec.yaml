@@ -1,10 +1,10 @@
 name: budgetin
 description: Budgeting App
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 0.1.0-alpha0116
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: ">=3.1.3 <4.0.0"
 
 dependencies:
   bloc: ^8.1.2
@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
-  go_router: ^12.0.1
   http: ^1.1.0
   window_size:
     git:
@@ -20,7 +19,7 @@ dependencies:
       path: plugins/window_size
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
   rename_app: ^1.3.1
