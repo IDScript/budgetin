@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 18
           cache: "pnpm"
-          cache-dependency-path: "api/pnpm-lock.yaml"
+          cache-dependency-path: "web/pnpm-lock.yaml"
       - name: Install Depedency and Build Assets
         run: cd web && pnpm i && pnpm build
       - name: Validate composer.json and composer.lock
