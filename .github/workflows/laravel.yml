@@ -3,8 +3,12 @@ name: Laravel Test
 on:
   push:
     branches: ["main", "dev", "qa"]
+    paths:
+      - web/**
   pull_request:
     branches: ["main", "dev", "qa"]
+    paths:
+      - web/**
 
 jobs:
   Laravel_Test:

@@ -3,6 +3,8 @@ name: 🚀 Deploy website on push
 on:
   push:
     branches: ["dev"]
+    paths:
+      - web/**
 
 jobs:
   web-deploy:
