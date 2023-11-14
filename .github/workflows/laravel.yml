@@ -33,14 +33,13 @@ jobs:
         with:
           version: latest
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v4.0.0
         with:
           node-version: 18
           cache: "pnpm"
-      - name: Install Depedency
-        run: cd web && pnpm i
-      - name: Build Assets
-        run: cd web && pnpm build
+          cache-dependency-path: "api/pnpm-lock.yaml"
+      - name: Install Depedency and Build Assets
+        run: cd web && pnpm i && pnpm build
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
       - name: Install composer dependencies
@@ -53,6 +52,6 @@ jobs:
           cp .env.ci .env
           php artisan key:generate
       - name: Laravel Migrate
-        run: php artisan migrate
+        run: cd web && php artisan migrate
       - name: Laravel Run Test
-        run: php artisan test
+        run: cd web && php artisan test
