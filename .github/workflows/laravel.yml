@@ -41,7 +41,7 @@ jobs:
       - name: Install Depedency and Build Assets
         run: cd web && pnpm i && pnpm build
       - name: Validate composer.json and composer.lock
-        run: composer validate --strict
+        run: cd web && composer validate --strict
       - name: Install composer dependencies
         run: |
           cd web
