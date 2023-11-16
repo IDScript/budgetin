@@ -28,7 +28,7 @@ class RegisterController extends Controller {
             'password' => bcrypt($request->password)
         ]);
 
-        $token = $user->createToken('BudgetIn');
+        $token = $user->createToken($request->email);
 
         return (new UserResource($user))->additional([
             'token' => $token->plainTextToken,

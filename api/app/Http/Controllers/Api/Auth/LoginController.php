@@ -20,11 +20,12 @@ class LoginController extends Controller {
         ]);
 
         if (auth()->attempt($credentials)) {
+            /** @var \App\Models\User $user **/
             $user = auth()->user();
             $user->tokens()->delete();
 
             return (new UserResource($user))->additional([
-                'token' => $user->createToken('BudgetIn')->plainTextToken,
+                'token' => $user->createToken($request->email)->plainTextToken,
             ]);
         }
 
