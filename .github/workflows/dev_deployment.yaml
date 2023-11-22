@@ -8,7 +8,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🎉 FTP Deploy
+    name: 🎉 Dev FTP Deploy
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 18
           cache: "pnpm"
+          cache-dependency-path: "api/pnpm-lock.yaml"
       - name: Install Depedency
         run: cd api &&  pnpm i
       - name: Build Assets
