@@ -4,7 +4,7 @@ on:
   push:
     branches: ["dev"]
     paths:
-      - web/**
+      - api/**
 
 jobs:
   web-deploy:
@@ -24,13 +24,13 @@ jobs:
           node-version: 18
           cache: "pnpm"
       - name: Install Depedency
-        run: cd web &&  pnpm i
+        run: cd api &&  pnpm i
       - name: Build Assets
-        run: cd web && pnpm build
+        run: cd api && pnpm build
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          local-dir: web/
+          local-dir: api/
           server: ${{ secrets.KA_FTP_HOST }}
           username: ${{ secrets.KA_FTP_USERNAME }}
           password: ${{ secrets.KA_FTP_PASSWORD }}

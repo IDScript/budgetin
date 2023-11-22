@@ -4,11 +4,11 @@ on:
   push:
     branches: ["main", "dev", "qa"]
     paths:
-      - web/**
+      - api/**
   pull_request:
     branches: ["main", "dev", "qa"]
     paths:
-      - web/**
+      - api/**
 
 jobs:
   Laravel_Test:
@@ -37,21 +37,21 @@ jobs:
         with:
           node-version: 18
           cache: "pnpm"
-          cache-dependency-path: "web/pnpm-lock.yaml"
+          cache-dependency-path: "api/pnpm-lock.yaml"
       - name: Install Depedency and Build Assets
-        run: cd web && pnpm i && pnpm build
+        run: cd api && pnpm i && pnpm build
       - name: Validate composer.json and composer.lock
-        run: cd web && composer validate --strict
+        run: cd api && composer validate --strict
       - name: Install composer dependencies
         run: |
-          cd web
+          cd api
           composer install --no-scripts
       - name: Prepare Laravel Application
         run: |
-          cd web
+          cd api
           cp .env.ci .env
           php artisan key:generate
       - name: Laravel Migrate
-        run: cd web && php artisan migrate
+        run: cd api && php artisan migrate
       - name: Laravel Run Test
-        run: cd web && php artisan test
+        run: cd api && php artisan test
