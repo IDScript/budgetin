@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller {
     /**
@@ -14,23 +16,23 @@ class LoginController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request) {
-        $credentials = $request->validate([
-            'email' => ['required'],
-            'password' => ['required'],
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'device' => 'required',
         ]);
 
-        if (auth()->attempt($credentials)) {
-            /** @var \App\Models\User $user **/
-            $user = auth()->user();
-            $user->tokens()->delete();
+        $user = User::where('email', $request->email)->first();
+        $user->tokens()->where('expires_at', '<=', now())->delete();
 
-            return (new UserResource($user))->additional([
-                'token' => $user->createToken($request->email)->plainTextToken,
-            ]);
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'message' => 'Your credential does not match.',
+            ], 401);
         }
 
-        return response()->json([
-            'message' => 'Your credential does not match.',
-        ], 401);
+        return (new UserResource($user))->additional([
+            'token' => $user->createToken($request->email, ['*'], now()->addSeconds(30))->plainTextToken,
+        ]);
     }
 }
