@@ -1,10 +1,7 @@
 import 'dart:io';
-
+import 'package:budgetin/app.dart';
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
-
-import 'config/routes.dart';
-import 'config/themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,20 +11,7 @@ void main() {
     // setWindowMaxSize(Size.infinite);
   }
 
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator().generateRoute,
-    );
-  }
+  runApp(
+    const App(),
+  );
 }
