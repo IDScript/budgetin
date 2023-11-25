@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:budgetin/ui/home_page.dart';
+import 'package:budgetin/home/home.dart';
 import 'package:budgetin/config/routes.dart';
 import 'package:budgetin/config/themes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +74,7 @@ class _AppViewState extends State<AppView> {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  MyHomePage.route(),
+                  HomePage.route(),
                   (route) => false,
                 );
               case AuthenticationStatus.unauthenticated:
