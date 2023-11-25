@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:budgetin/login/models/models.dart';
-import 'package:authentication_repository/authentication_repository.dart';
+import 'package:budgetin/login/login.dart';
+import 'package:budgetin/repo/auth/auth_repo.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

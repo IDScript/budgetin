@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:budgetin/auth/auth.dart';
 import 'package:budgetin/home/home.dart';
-import 'package:budgetin/config/routes.dart';
-import 'package:budgetin/config/themes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:budgetin/app/config/routes.dart';
+import 'package:budgetin/app/config/themes.dart';
+import 'package:budgetin/repo/user/user_repo.dart';
+import 'package:budgetin/repo/auth/auth_repo.dart';
 import 'package:budgetin/login/view/login_page.dart';
-import 'package:user_repository/user_repository.dart';
-import 'package:budgetin/authentication/authentication.dart';
-import 'package:authentication_repository/authentication_repository.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -62,7 +62,7 @@ class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // initialRoute: '/',
+      initialRoute: '/',
       theme: lightTheme(),
       darkTheme: darkTheme(),
       navigatorKey: _navigatorKey,

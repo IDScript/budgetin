@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:budgetin/ui/sub_mene.dart';
-import 'package:budgetin/ui/main_page.dart';
 import 'package:budgetin/splash/splash.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:budgetin/bloc/navbar/navbar_bloc.dart';
 
 class RouteGenerator {
   Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,17 +8,17 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const SplashPage(),
         );
-      case '/home':
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider<NavBarBloc>.value(
-            value: NavBarBloc(),
-            child: const MainPage(),
-          ),
-        );
-      case '/sub':
-        return MaterialPageRoute(
-          builder: (_) => const SubPage(),
-        );
+      // case '/home':
+      //   return MaterialPageRoute(
+      //     builder: (_) => BlocProvider<NavBarBloc>.value(
+      //       value: NavBarBloc(),
+      //       child: const MainPage(),
+      //     ),
+      //   );
+      // case '/sub':
+      //   return MaterialPageRoute(
+      //     builder: (_) => const SubPage(),
+      //   );
       default:
         return _errorRoute();
     }
