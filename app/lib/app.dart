@@ -1,63 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:budgetin/auth/auth.dart';
-import 'package:budgetin/home/home.dart';
+import 'package:budgetin/login/login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:budgetin/app/config/routes.dart';
-import 'package:budgetin/app/config/themes.dart';
-import 'package:budgetin/repo/user/user_repo.dart';
-import 'package:budgetin/repo/auth/auth_repo.dart';
-import 'package:budgetin/login/view/login_page.dart';
+import 'package:budgetin/app/config/config.dart';
+import 'package:budgetin/dashboard/dashboard.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  late final AuthenticationRepository _authenticationRepository;
-  late final UserRepository _userRepository;
-
-  @override
-  void initState() {
-    super.initState();
-    _authenticationRepository = AuthenticationRepository();
-    _userRepository = UserRepository();
-  }
-
-  @override
-  void dispose() {
-    _authenticationRepository.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _authenticationRepository,
-      child: BlocProvider(
-        create: (_) => AuthenticationBloc(
-          authenticationRepository: _authenticationRepository,
-          userRepository: _userRepository,
-        ),
-        child: const AppView(),
-      ),
-    );
-  }
-}
-
-class AppView extends StatefulWidget {
-  const AppView({super.key});
-
-  @override
-  State<AppView> createState() => _AppViewState();
-}
-
-class _AppViewState extends State<AppView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
-  NavigatorState get _navigator => _navigatorKey.currentState!;
 
   @override
   Widget build(BuildContext context) {
@@ -65,30 +14,44 @@ class _AppViewState extends State<AppView> {
       initialRoute: '/',
       theme: lightTheme(),
       darkTheme: darkTheme(),
-      navigatorKey: _navigatorKey,
+      // navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator().generateRoute,
-      builder: (context, child) {
-        return BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            switch (state.status) {
-              case AuthenticationStatus.authenticated:
-                _navigator.pushAndRemoveUntil<void>(
-                  HomePage.route(),
-                  (route) => false,
-                );
-              case AuthenticationStatus.unauthenticated:
-                _navigator.pushAndRemoveUntil<void>(
-                  LoginPage.route(),
-                  (route) => false,
-                );
-              case AuthenticationStatus.unknown:
-                break;
-            }
-          },
-          child: child,
-        );
-      },
+      home: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          switch (state) {
+            case AuthAuthenticated _:
+              return const DashboardPage();
+            case AuthUnauthenticated _:
+              return BlocProvider<LoginBloc>(
+                create: (context) => LoginBloc(APILogin()),
+                child: const LoginPage(),
+              );
+            default:
+              return Scaffold(
+                body: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 25.0,
+                        width: 25.0,
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.amber),
+                          strokeWidth: 4.0,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+          }
+        },
+      ),
     );
   }
 }

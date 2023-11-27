@@ -1,13 +1,28 @@
 part of 'auth_bloc.dart';
 
-sealed class AuthenticationEvent {
-  const AuthenticationEvent();
+sealed class AuthEvent extends Equatable {
+  const AuthEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-final class _AuthenticationStatusChanged extends AuthenticationEvent {
-  const _AuthenticationStatusChanged(this.status);
+class AppStarted extends AuthEvent {}
 
-  final AuthenticationStatus status;
+class LoggedIn extends AuthEvent {
+  final String token;
+
+  const LoggedIn({required this.token});
+
+  // @override
+  // TODO: implement props
+  // List<Object?> get props => [token];
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'LoggedIn(token: $token)';
+  }
 }
 
-final class AuthenticationLogoutRequested extends AuthenticationEvent {}
+class LoggedOut extends AuthEvent {}
