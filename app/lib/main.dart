@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:budgetin/app.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:budgetin/observer.dart';
 import 'package:budgetin/auth/auth.dart';
@@ -11,10 +12,12 @@ void main() {
   final userRepository = UserRepository();
 
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(450, 800));
-    setWindowMaxSize(const Size(450, 800));
-    // setWindowMaxSize(Size.infinite);
+  if (!kIsWeb) {
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      setWindowMinSize(const Size(450, 800));
+      setWindowMaxSize(const Size(450, 800));
+      // setWindowMaxSize(Size.infinite);
+    }
   }
 
   runApp(

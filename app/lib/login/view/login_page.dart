@@ -1,6 +1,7 @@
-import 'package:budgetin/login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:budgetin/login/login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:budgetin/app/services/device_info_plus.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,14 +11,25 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  late String _deviceData;
+  late String _deviceInfo = '';
   TextEditingController? _passController;
   TextEditingController? _emailController;
 
   @override
   void initState() {
+    getDeviceData();
     _passController = TextEditingController();
     _emailController = TextEditingController();
     super.initState();
+  }
+
+  void getDeviceData() async {
+    _deviceData = await initPlatformInfo();
+    if (!mounted) return;
+    setState(() {
+      _deviceInfo = _deviceData;
+    });
   }
 
   @override
@@ -51,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     return ElevatedButton(
                       onPressed: () {
                         final req = LoginModel(
+                          device: _deviceInfo,
                           email: _emailController!.text,
                           password: _passController!.text,
                         );
