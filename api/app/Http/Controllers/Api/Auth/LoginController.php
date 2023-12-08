@@ -32,7 +32,7 @@ class LoginController extends Controller {
         }
 
         return (new UserResource($user))->additional([
-            'token' => $user->createToken($request->email, ['*'], now()->addSeconds(30))->plainTextToken,
+            'token' => $user->createToken($request->device, ['*'], now()->addSeconds(30))->plainTextToken,
         ]);
     }
 }
