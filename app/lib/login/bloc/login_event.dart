@@ -2,29 +2,22 @@ part of 'login_bloc.dart';
 
 sealed class LoginEvent extends Equatable {
   const LoginEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
-final class LoginUsernameChanged extends LoginEvent {
-  const LoginUsernameChanged(this.username);
+class LoginButtonPressed extends LoginEvent {
+  final LoginModel loginModel;
 
-  final String username;
-
-  @override
-  List<Object> get props => [username];
-}
-
-final class LoginPasswordChanged extends LoginEvent {
-  const LoginPasswordChanged(this.password);
-
-  final String password;
+  const LoginButtonPressed({
+    required this.loginModel,
+  });
 
   @override
-  List<Object> get props => [password];
-}
+  // // TODO: implement props
+  List<Object?> get props => [loginModel];
 
-final class LoginSubmitted extends LoginEvent {
-  const LoginSubmitted();
+  // @override
+  // String toString() {
+  //   // TODO: implement toString
+  //   return 'LoginButtonPressed { email: $email, password: $password }';
+  // }
 }
