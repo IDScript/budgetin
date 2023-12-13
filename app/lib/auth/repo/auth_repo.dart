@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:budgetin/app/constants/url.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserRepository {
@@ -30,7 +29,7 @@ class UserRepository {
   }
 
   Future login(String email, String password) async {
-    Response res = await http.post(
+    http.Response res = await http.post(
       Uri.parse(API.login),
       body: {
         'email': email,
